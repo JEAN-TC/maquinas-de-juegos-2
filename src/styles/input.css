@@ -19,3 +19,13 @@ html {
 [data-aos="scale-x-100"].aos-animate {
   transform: scaleX(1);
 }
+/* ... después de todo tu otro CSS ... */
+
+/* ----------------------------------------------------------------- */
+/*      CLASE PERSONALIZADA PARA UNA TRANSICIÓN DE HOVER SUAVE      */
+/* ----------------------------------------------------------------- */
+.smooth-hover {
+  transition-property: transform, box-shadow, border-color; /* Transición solo a estas propiedades */
+  transition-duration: 700ms; /* DURACIÓN LENTA: 0.7 segundos */
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); /* Curva suave (ease-in-out) */
+}

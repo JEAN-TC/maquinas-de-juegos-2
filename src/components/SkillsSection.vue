@@ -19,37 +19,43 @@ const skills = ref([
 </script>
 
 <template>
-  <section id="skills" class="py-24"> <!-- Quitamos el fondo, ahora es global -->
+  <section id="skills" class="py-24 bg-background">
     <div class="container mx-auto px-6">
       
-      <!-- Título con el nuevo color de texto principal -->
-      <h2 
-        data-aos="fade-up" 
-        class="text-3xl md:text-4xl font-bold text-center mb-16 text-text-primary"
-      >
-        Habilidades Técnicas
-      </h2>
+      <!-- Título de Sección -->
+      <div class="text-center mb-16" data-aos="fade-up">
+        <h2 class="relative inline-block text-3xl md:text-4xl font-extrabold text-text-primary py-2 tracking-wider uppercase">
+          <span>Habilidades Técnicas</span>
+          <span 
+            class="absolute bottom-0 left-0 w-full h-1 bg-accent
+                   transform origin-left transition-transform duration-700 ease-out"
+            data-aos="scale-x-100" 
+            data-aos-anchor-placement="top-bottom"
+          ></span>
+        </h2>
+      </div>
       
       <!-- Grid de habilidades -->
-      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
+      <div class="max-w-6xl mx-auto grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
         
-        <!-- Tarjeta de Habilidad con el nuevo diseño claro -->
+                <!-- Tarjeta de Habilidad -->
         <div 
           v-for="(skill, index) in skills" 
           :key="skill.name"
-          :data-aos-delay="index * 100" 
           data-aos="fade-up"
-          class="bg-surface p-6 rounded-lg text-center cursor-pointer border border-border-color
-                 transition-all duration-300
-                 hover:-translate-y-2 hover:shadow-xl hover:shadow-accent/10"
+          :data-aos-delay="index * 100"
+          class="bg-surface p-6 rounded-2xl text-center cursor-pointer border border-border-color
+                 transition duration-700 ease-in-out
+                 hover:-translate-y-2 hover:border-accent hover:shadow-2xl hover:shadow-accent/10"
         >
-          <!-- Icono con el nuevo color de acento -->
-          <Icon 
+                     <Icon 
             :icon="skill.iconName" 
-            class="text-5xl mb-4 mx-auto text-accent"
+            class="text-4xl md:text-5xl mb-4 mx-auto text-text-primary
+                    transition duration-500 ease-in-out
+                    group-hover:text-accent group-hover:scale-110
+                    group-hover:shadow-lg group-hover:shadow-accent/20"
           /> 
-          <!-- Texto de la habilidad con el nuevo color principal -->
-          <h3 class="font-medium text-text-primary">{{ skill.name }}</h3>
+          <h3 class="font-semibold text-text-primary text-sm md:text-base">{{ skill.name }}</h3>
         </div>
 
       </div>

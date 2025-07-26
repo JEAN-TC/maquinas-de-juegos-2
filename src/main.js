@@ -1,3 +1,4 @@
+// src/main.js
 
 import { createApp } from 'vue'
 import App from './App.vue'
@@ -9,11 +10,12 @@ import 'aos/dist/aos.css'; // Importa los estilos de AOS
 
 // Inicializa AOS
 AOS.init({
-  duration: 700,  // Duración de la animación
-  once: true,     // Animar solo una vez
-  offset: 120,    // Animar cuando el elemento esté a 120px de ser visible
-  easing: 'ease-in-out', // Curva de animación suave
+  duration: 1000,  // Puedes ajustar esta velocidad global para la carga de la página
+  once: true,
+  offset: 100,
+  easing: 'ease-in-out',
 });
 // --- FIN DE LA CONFIGURACIÓN DE AOS ---
 
-createApp(App).mount('#app')
+// IMPORTANTE: SOLO HAY UNA LÍNEA PARA CREAR LA APP
+createApp(App).mount('#app') 
