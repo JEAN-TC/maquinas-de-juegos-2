@@ -19,13 +19,50 @@ html {
 [data-aos="scale-x-100"].aos-animate {
   transform: scaleX(1);
 }
-/* ... después de todo tu otro CSS ... */
+/* ...al final de tu input.css... */
 
-/* ----------------------------------------------------------------- */
-/*      CLASE PERSONALIZADA PARA UNA TRANSICIÓN DE HOVER SUAVE      */
-/* ----------------------------------------------------------------- */
-.smooth-hover {
-  transition-property: transform, box-shadow, border-color; /* Transición solo a estas propiedades */
-  transition-duration: 700ms; /* DURACIÓN LENTA: 0.7 segundos */
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); /* Curva suave (ease-in-out) */
+/* --- Estilo de brillo para los iconos del Navbar --- */
+.icon-glow-container {
+  position: relative;
+  transition: transform 0.3s ease-in-out;
+}
+
+.icon-glow-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 9999px; /* Hace un círculo */
+  padding: 2px; /* Espesor del brillo */
+  background: radial-gradient(circle, rgba(14, 165, 233, 0.8) 0%, transparent 70%);
+  mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  -webkit-mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  -webkit-mask-composite: xor;
+  opacity: 0;
+  transform: scale(0.9);
+  transition: all 0.3s ease-in-out;
+}
+
+.icon-glow-container:hover {
+  transform: scale(1.1); /* Agranda el contenedor, incluyendo el brillo */
+}
+
+.icon-glow-container:hover::before {
+  opacity: 1;
+  transform: scale(1.2); /* Expande el brillo */
+}
+.glow-on-hover {
+  transition: filter 0.3s ease-in-out; /* Transición para el filtro */
+  filter: drop-shadow(0 0 0px rgba(255, 255, 255, 0)); /* Estado inicial sin brillo */
+}
+
+.glow-on-hover:hover {
+  filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.6)) drop-shadow(0 0 16px rgba(255, 255, 255, 0.4)); /* Brillo en hover */
 }

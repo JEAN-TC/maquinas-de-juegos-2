@@ -22,6 +22,7 @@ import SkillsSection from './components/SkillsSection.vue';
 import ProjectsSection from './components/ProjectsSection.vue';
 import ContactSection from './components/ContactSection.vue';
 import Footer from './components/Footer.vue';
+import { Icon } from '@iconify/vue';
 
 </script>
 
