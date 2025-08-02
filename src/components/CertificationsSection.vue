@@ -1,32 +1,42 @@
-<!-- ARCHIVO: src/components/CertificationsSection.vue -->
-
 <script setup>
 import { ref } from 'vue';
+import { Icon } from '@iconify/vue';
+
+// --- IMPORTACIONES DE IMÁGENES CORREGIDAS ---
+// Asegúrate de que las imágenes estén dentro de la carpeta "certifications"
+import cert1 from '@/assets/certifications/certificacion-1.png';
+import cert2 from '@/assets/certifications/certifications-2.png'; // <-- Corregido el nombre (era certificationS)
+
+// Crea una variable para una imagen de placeholder si no tienes una tercera
+// por ejemplo, reusando la primera. O añade una nueva importación.
+import placeholderCert from '@/assets/certifications/certificacion-1.png';
 
 const certifications = ref([
   {
-    name: 'eJPT (eLearnSecurity Junior Penetration Tester)',
-    issuer: 'eLearnSecurity',
-    badge: 'https://images.credly.com/size/340x340/images/6c6c21e3-294b-4f1b-9f6b-d36c4f346850/eJPT_Certification_Badge.png',
-    link: '#' // Pon aquí tu enlace de validación
+    name: 'Certificación 1', // ¡Cambia este nombre!
+    issuer: 'Institución 1',
+    image: cert1, 
+    link: '#' 
   },
   {
-    name: 'CompTIA Security+',
-    issuer: 'CompTIA',
-    badge: 'https://images.credly.com/size/340x340/images/0e186848-8319-4a0b-801b-c7d01375c3ad/Security_2B_2023.png',
+    name: 'Certificación 2', // ¡Cambia este nombre!
+    issuer: 'Institución 2',
+    image: cert2,
     link: '#'
   },
   {
-    name: 'Certified Ethical Hacker (CEH)',
-    issuer: 'EC-Council',
-    badge: 'https://images.credly.com/size/340x340/images/b2ba3237-77cf-4919-a687-f1239c0af82f/CEHv12-min.png',
+    // He añadido este como ejemplo para el grid de 3.
+    // Cambia sus datos o elimínalo.
+    name: 'Tercer Certificado',
+    issuer: 'Otra Institución',
+    image: placeholderCert, // Usando la imagen de placeholder
     link: '#'
   },
 ]);
 </script>
 
 <template>
-  <section id="certifications" class="pt-12 pb-24 bg-dark-background">
+  <section id="certifications" class="py-24 bg-dark-background">
     <div class="container mx-auto px-4">
       
       <!-- Título de la Sección -->
@@ -38,45 +48,65 @@ const certifications = ref([
         </h2>
       </div>
 
-      <!-- Contenedor de las certificaciones -->
-      <div class="max-w-4xl mx-auto space-y-4">
+      <!-- Galería de Certificados -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         
-        <!-- Tarjeta de Certificación -->
-        <a 
+        <div 
           v-for="(cert, index) in certifications" 
           :key="cert.name"
-          :href="cert.link"
-          target="_blank"
           data-aos="fade-up"
           :data-aos-delay="index * 100"
-          class="group flex items-center bg-dark-surface p-4 rounded-xl 
-                 border-2 border-transparent 
-                 transition-all duration-300 ease-in-out
-                 hover:border-accent hover:shadow-lg hover:shadow-accent/10 hover:scale-[1.02]"
+          class="group relative"
         >
-          <!-- Insignia/Badge -->
-          <div class="flex-shrink-0 bg-white/5 p-3 rounded-lg">
-            <img :src="cert.badge" :alt="`${cert.name} badge`" class="h-16 w-16 transition-transform duration-300 group-hover:scale-110">
+          <!-- Efecto de borde brillante "Aurora" -->
+          <div class="absolute -inset-px bg-gradient-to-r from-cyan-500 to-purple-600 
+                      rounded-xl blur opacity-0 group-hover:opacity-75 
+                      transition-opacity duration-500">
           </div>
 
-          <!-- Información de la certificación -->
-          <div class="ml-6 flex-grow">
-            <h3 class="text-lg font-bold text-dark-text-primary">
-              {{ cert.name }}
-            </h3>
-            <p class="text-md text-dark-text-secondary">
-              Emitida por: <span class="font-semibold text-dark-text-primary/80">{{ cert.issuer }}</span>
-            </p>
-          </div>
+          <!-- Contenedor principal de la tarjeta -->
+          <div class="relative bg-dark-surface rounded-lg h-full overflow-hidden
+                      border border-dark-border-color
+                      transition-transform duration-300 ease-in-out group-hover:scale-[1.03]">
 
-          <!-- Icono de "Verificar" que aparece en hover -->
-          <div class="ml-auto text-dark-text-secondary opacity-0 
-                      transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0 -translate-x-2">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-            </svg>
+            <!-- Imagen del Certificado -->
+            <img :src="cert.image" :alt="`Certificado de ${cert.name}`" 
+                 class="w-full h-full object-contain p-2
+                        transition-all duration-500 group-hover:scale-105 group-hover:saturate-125"
+            >
+
+            <!-- Overlay con Información (Aparece y se desliza en hover) -->
+            <div 
+              class="absolute inset-0 p-6 flex flex-col justify-end text-left
+                     bg-gradient-to-t from-black/90 via-black/60 to-transparent
+                     backdrop-blur-sm <!-- ✨ Efecto Glassmorphism ✨ -->
+                     opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0
+                     transition-all duration-500 ease-in-out"
+            >
+              
+              <h3 class="text-xl font-bold text-white mb-1
+                         opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0
+                         transition-all duration-500 delay-100 ease-out">
+                {{ cert.name }}
+              </h3>
+
+              <p class="text-md text-gray-300
+                         opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0
+                         transition-all duration-500 delay-200 ease-out">
+                Emitida por: {{ cert.issuer }}
+              </p>
+              
+              <a :href="cert.link" target="_blank"
+                 class="inline-flex items-center text-accent font-semibold mt-4
+                        opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0
+                        transition-all duration-500 delay-300 ease-out group-hover:text-cyan-300"
+              >
+                Ver Credencial <Icon icon="mdi:arrow-right" class="w-5 h-5 ml-1 transition-transform duration-300 group-hover:translate-x-1"/>
+              </a>
+
+            </div>
           </div>
-        </a>
+        </div>
         
       </div>
     </div>
