@@ -1,4 +1,4 @@
-<!-- ARCHIVO: src/components/SkillsSection.vue -->
+<!-- ARCHIVO: src/components/SkillsSection.vue (CORREGIDO Y FINAL) -->
 
 <script setup>
 import { ref } from 'vue';
@@ -19,11 +19,11 @@ const skills = ref([
 </script>
 
 <template>
-  <section id="skills" class="py-24 bg-background">
+  <section id="skills" class="py-24 bg-background"> <!-- Fondo Negro -->
     <div class="container mx-auto px-6">
       
       <!-- Título de Sección -->
-      <div class="text-center mb-16" data-aos="fade-up">
+      <div class="text-center mb-20" data-aos="fade-up">
         <h2 class="relative inline-block text-3xl md:text-4xl font-extrabold text-text-primary py-2 tracking-wider uppercase">
           <span>Habilidades Técnicas</span>
           <span 
@@ -38,22 +38,24 @@ const skills = ref([
       <!-- Grid de habilidades -->
       <div class="max-w-6xl mx-auto grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
         
-                <!-- Tarjeta de Habilidad -->
+        <!-- Tarjeta de Habilidad -->
         <div 
           v-for="(skill, index) in skills" 
           :key="skill.name"
           data-aos="fade-up"
           :data-aos-delay="index * 100"
-          class="bg-surface p-6 rounded-2xl text-center cursor-pointer border border-border-color
-                 transition duration-700 ease-in-out
-                 hover:-translate-y-2 hover:border-accent hover:shadow-2xl hover:shadow-accent/10"
+          class="bg-surface p-6 rounded-xl text-center cursor-pointer border border-border-color
+                 group <!-- MARCAMOS LA TARJETA COMO GRUPO -->
+                 transition duration-700 
+                 hover:-translate-y-2 hover:border-accent hover:shadow-xl hover:shadow-accent/10"
         >
-                     <Icon 
+          <Icon 
             :icon="skill.iconName" 
-            class="text-4xl md:text-5xl mb-4 mx-auto text-text-primary
-                    transition duration-500 ease-in-out
-                    group-hover:text-accent group-hover:scale-110
-                    group-hover:shadow-lg group-hover:shadow-accent/20"
+            class="text-4xl md:text-5xl mb-4 mx-auto text-text-primary 
+                   <!-- Transición lenta y suave para el icono -->
+                   transition-all duration-700 ease-in-out
+                   <!-- Reacciona al hover de la tarjeta -->
+                   group-hover:text-accent group-hover:scale-125"
           /> 
           <h3 class="font-semibold text-text-primary text-sm md:text-base">{{ skill.name }}</h3>
         </div>

@@ -7,7 +7,7 @@
       <AboutSection />
       <SkillsSection />
       <ProjectsSection />
-      <ContactSection />
+      <CertificationsSection />  
     </main>
     <Footer />
   </div>
@@ -20,9 +20,8 @@ import HeroSection from './components/HeroSection.vue';
 import AboutSection from './components/AboutSection.vue';
 import SkillsSection from './components/SkillsSection.vue';
 import ProjectsSection from './components/ProjectsSection.vue';
-import ContactSection from './components/ContactSection.vue';
+import CertificationsSection from './components/CertificationsSection.vue';
 import Footer from './components/Footer.vue';
-import { Icon } from '@iconify/vue';
 
 </script>
 

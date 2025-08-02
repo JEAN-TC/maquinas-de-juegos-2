@@ -1,27 +1,34 @@
-// tailwind.config.js
+/** @type {import('tailwindcss').Config} */
 const defaultTheme = require('tailwindcss/defaultTheme');
 
 module.exports = {
-  // ... content y safelist
+  content: ["./index.html", "./src/**/*.{vue,js,ts,jsx,tsx}"],
+  safelist: [{ pattern: /aos-/ }],
   theme: {
     extend: {
-      colors: { /*... tu paleta oscura ...*/ },
-      fontFamily: { /*... tu fuente ...*/ },
+      colors: { /* Tu paleta oscura no cambia */ },
+      fontFamily: { 'sans': ['Inter', ...defaultTheme.fontFamily.sans] },
+      textShadow: { // Nueva sección para el plugin
+        'glow': '0 0 10px rgba(14, 165, 233, 0.5), 0 0 20px rgba(14, 165, 233, 0.3)',
+      },
       keyframes: {
-        'soft-glow': {
-          '0%, 100%': { opacity: 0.9, textShadow: '0 0 8px rgba(255, 255, 255, 0.4)' },
-          '50%': { opacity: 1, textShadow: '0 0 16px rgba(255, 255, 255, 0.8)' },
-        },
-        'aurora-border': {
-          '0%, 100%': { backgroundPosition: '0% 50%' },
+        'aurora': {
+          '0%': { backgroundPosition: '0% 50%' },
           '50%': { backgroundPosition: '100% 50%' },
+          '100%': { backgroundPosition: '0% 50%' },
+        },
+        'sparkle-bg': {
+          '0%': { backgroundPosition: '200% 0' },
+          '100%': { backgroundPosition: '-200% 0' },
         }
       },
       animation: {
-        'soft-glow': 'soft-glow 2.5s ease-in-out infinite',
-        'aurora-border': 'aurora-border 8s ease-in-out infinite',
+        'aurora': 'aurora 10s ease-in-out infinite', // Nueva
+        'sparkle-bg': 'sparkle-bg 15s linear infinite',
       }
     },
   },
-  plugins: [],
+  plugins: [
+    require('tailwindcss-textshadow'), // Plugin añadido
+  ],
 }

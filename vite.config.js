@@ -1,14 +1,14 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
-import tailwindcss from '@tailwindcss/vite'
 import { fileURLToPath, URL } from 'node:url'
+
+// ¡Ya no importamos nada de Tailwind aquí!
 
 export default defineConfig({
   plugins: [
     vue(),
-    tailwindcss(),
+    // ¡Ya no añadimos tailwindcss() aquí!
   ],
-  // La sección 'resolve' debe estar al mismo nivel que 'plugins'
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))

@@ -1,25 +1,56 @@
-/* Primero, todas las importaciones, sin nada en medio */
+/* src/styles/input.css (Versión Original Completa) */
+
 @import "tailwindcss";
-/* Si necesitas el plugin de tipografía, mantenlo, si no, puedes borrar esta línea */
-/* @import "tailwindcss/typography"; */
-
-
-/* Después de TODAS las importaciones, puedes poner tus estilos personalizados */
 
 html {
   scroll-behavior: smooth;
 }
 
-/* Estilos personalizados para la animación del título de sección */
 [data-aos="scale-x-100"] {
   transform: scaleX(0);
   transition-property: transform;
 }
-
 [data-aos="scale-x-100"].aos-animate {
   transform: scaleX(1);
 }
-/* ...al final de tu input.css... */
+
+/* --- Estilo de overlay "Cyber Glitch" para tarjetas de proyecto --- */
+.cyber-glitch-overlay {
+  background-color: rgba(10, 25, 47, 0.7); /* Fondo oscuro semitransparente */
+  box-shadow: 
+    inset 0 0 50px rgba(14, 165, 233, 0.4), /* Brillo cian interior grande */
+    inset 0 0 15px rgba(14, 165, 233, 0.6); /* Brillo cian interior más enfocado */
+  overflow: hidden;
+  position: absolute;
+}
+
+/* Pseudoelemento para crear la textura de ruido */
+.cyber-glitch-overlay::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  right: -50%;
+  bottom: -50%;
+  width: 200%;
+  height: 200%;
+  background: transparent url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIj48ZmlsdGVyIGlkPSJub2lzZSI+PGZlVHVyYnVsZW5jZSB0eXBlPSJmcmFjdGFsTm9pc2UiIGJhc2VGUmVxdWVuY3k9IjAuNjUiIG51bU9jdGF2ZXM9IjMiIHN0aXRjaFRpbGVzPSJzdGl0Y2giLz48ZmVDb2xvck1hdHJpeCB0eXBlPSJtYXRyaXgiIHZhbHVlcz0iMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMC41IDAiLz48L2ZpbHRlcj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZHQlPSIxMDAlIiBmaWx0ZXI9InVybCgjam9pc2UpIi8+PC9zdmc+');
+  animation: noise 2s steps(10) infinite;
+  opacity: 0.1;
+}
+
+@keyframes noise {
+  0%, 100% { transform: translate(0, 0); }
+  10% { transform: translate(-5%, -10%); }
+  20% { transform: translate(-15%, 5%); }
+  30% { transform: translate(7%, -25%); }
+  40% { transform: translate(-5%, 25%); }
+  50% { transform: translate(-15%, 10%); }
+  60% { transform: translate(15%, 0%); }
+  70% { transform: translate(0%, 15%); }
+  80% { transform: translate(25%, 35%); }
+  90% { transform: translate(-10%, 10%); }
+}
 
 /* --- Estilo de brillo para los iconos del Navbar --- */
 .icon-glow-container {
@@ -58,6 +89,7 @@ html {
   opacity: 1;
   transform: scale(1.2); /* Expande el brillo */
 }
+
 .glow-on-hover {
   transition: filter 0.3s ease-in-out; /* Transición para el filtro */
   filter: drop-shadow(0 0 0px rgba(255, 255, 255, 0)); /* Estado inicial sin brillo */
@@ -65,4 +97,23 @@ html {
 
 .glow-on-hover:hover {
   filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.6)) drop-shadow(0 0 16px rgba(255, 255, 255, 0.4)); /* Brillo en hover */
+}
+/* en tu archivo input.css */
+
+/* ✨ CLASE ACTUALIZADA PARA BORDE BRILLANTE + ESTRELLAS ✨ */
+.cyber-glitch-overlay-border {
+  /* Efecto de borde brillante con sombra interior y exterior */
+  box-shadow: 
+    inset 0 0 20px rgba(14, 165, 233, 0.5),
+    0 0 30px rgba(14, 165, 233, 0.3);
+  border-radius: 1rem; /* Asegura que el brillo siga las esquinas redondeadas */
+  
+  /* ✨ AÑADIMOS EL FONDO DE ESTRELLAS ANIMADAS ✨ */
+  background-image: 
+    /* Estrella/Nebulosa 1 */
+    radial-gradient(circle at 25% 40%, rgba(14, 165, 233, 0.15) 0%, transparent 20%),
+    /* Estrella/Nebulosa 2 */
+    radial-gradient(circle at 75% 60%, rgba(14, 165, 233, 0.15) 0%, transparent 20%);
+  background-size: 200px 200%, 150px 150px;
+  animation: sparkle-bg 15s linear infinite; /* Usamos la animación que ya tienes en tu config */
 }

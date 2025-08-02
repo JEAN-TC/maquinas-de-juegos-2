@@ -1,16 +1,50 @@
+<!-- ARCHIVO: src/components/ProjectsSection.vue (Con Mejoras Añadidas) -->
+
+<script setup>
+import { ref } from 'vue';
+import { Icon } from '@iconify/vue';
+import project1Image from '@/assets/proyecto-1.png';
+import project2Image from '@/assets/proyecto-2.png';
+
+
+const projects = ref([
+  {
+    title: 'Análisis de Vulnerabilidades App Web',
+    description: 'Pentest completo a una aplicación web, identificando XSS, SQLi y CSRF, y elaborando un informe detallado con recomendaciones.',
+    technologies: ['Burp Suite', 'OWASP ZAP', 'Nmap', 'SQLMap'],
+    image: project1Image,
+    link: '#'
+  },
+  {
+    title: 'Keylogger en Python',
+    description: 'Desarrollo de un keylogger educativo para entender su funcionamiento y detección. Captura y envía pulsaciones a un servidor seguro.',
+    technologies: ['Python', 'Sockets', 'pynput'],
+    image: project2Image,
+    link: '#'
+  },
+
+  {
+    title: 'Mi Tercer Proyecto Increíble',
+    description: 'Simulación de un ataque dirigido (Red Team) para evaluar las defensas de una red, incluyendo fases de OSINT, explotación y post-explotación.',
+    technologies: ['Metasploit', 'Kali Linux', 'Active Directory'],
+    image: project1Image,
+    link: '#'
+  },
+  
+]);
+</script>
+
 <template>
   <section id="projects" class="py-24 bg-background">
     <div class="container mx-auto px-6">
       
-      <!-- === INICIO DEL NUEVO TÍTULO ANIMADO === -->
+      <!-- === INICIO DEL TÍTULO AÑADIDO === -->
       <div class="text-center mb-20" data-aos="fade-up">
         <h2 
-          class="relative inline-block text-3xl md:text-4xl font-extrabold text-text-primary py-2
+          class="relative inline-block text-3xl md:text-4xl font-extrabold text-dark-text-primary py-2
                  tracking-wider uppercase"
         >
           <span>Proyectos Destacados</span>
-      
-          <!-- LÍNEA ANIMADA INFERIOR -->
           <span 
             class="absolute bottom-0 left-0 w-full h-1 bg-accent
                    transform origin-left transition-transform duration-700 ease-out"
@@ -19,77 +53,74 @@
           ></span>
         </h2>
       </div>
-      <!-- === FIN DEL NUEVO TÍTULO ANIMADO === -->
+      <!-- === FIN DEL TÍTULO AÑADIDO === -->
 
       
-      <!-- GRID DE PROYECTOS (Tu código se mantiene igual) -->
+      <!-- GRID DE PROYECTOS (Tu código original sin cambios) -->
       <div class="max-w-7xl mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-8">
         
-        <div 
+        <a 
           v-for="(project, index) in projects" 
           :key="project.title"
+          :href="project.link" 
+          target="_blank"
           data-aos="fade-up"
-          :data-aos-delay="index * 300"
-          class="bg-surface rounded-lg overflow-hidden border border-border-color
-                 flex flex-col
-                 transform transition-all duration-500
-                 hover:scale-105 hover:-translate-y-2 hover:shadow-2xl hover:shadow-accent/20"
+          :data-aos-delay="index * 150"
+          class="group block bg-white rounded-xl overflow-hidden border border-gray-200
+                 shadow-lg transition-all duration-500 ease-in-out
+                 hover:shadow-2xl hover:shadow-cyan-500/20 hover:-translate-y-2 hover:border-transparent"
         >
-          <a :href="project.link" target="_blank" class="block">
-            <img :src="project.image" alt="Imagen del proyecto" class="w-full h-56 object-cover">
-          </a>
-          <div class="p-6 flex flex-col flex-grow">
-            <h3 class="text-xl font-bold mb-3 text-text-primary">{{ project.title }}</h3>
-            <p class="text-text-secondary mb-5 flex-grow">{{ project.description }}</p>
-            <div class="flex flex-wrap gap-2 mb-6">
-              <span v-for="tech in project.technologies" :key="tech" class="bg-accent/10 text-accent text-xs font-semibold px-3 py-1 rounded-full">
-                {{ tech }}
-              </span>
+          <!-- Contenido de la tarjeta -->
+          <div class="relative flex flex-col h-full">
+            <!-- Imagen -->
+            <div class="overflow-hidden">
+              <img :src="project.image" alt="Imagen del proyecto" 
+                   class="w-full h-56 object-cover
+                          transition-transform duration-500 ease-in-out
+                          group-hover:scale-105">
             </div>
-            <a v-if="project.link" :href="project.link" target="_blank" class="inline-flex items-center text-accent hover:underline font-bold self-start mt-auto">
-              <span>Ver Repositorio</span>
-              <Icon icon="mdi:arrow-right" class="w-5 h-5 ml-1" />
-            </a>
-          </div>
-        </div>
 
+            <!-- Contenido del texto -->
+            <div class="relative p-6 flex flex-col flex-grow">
+              <!-- ✨ Capa de "Cyber Glitch" que aparece en Hover ✨ -->
+              <div 
+                class="absolute inset-0 z-0 transition-opacity duration-500 opacity-0 group-hover:opacity-100 
+                       cyber-glitch-overlay pointer-events-none"
+              ></div>
+              
+              <!-- Contenido Textual (posicionado encima de la capa) -->
+              <div class="relative z-10 flex flex-col flex-grow">
+                <h3 class="text-xl font-bold mb-3 text-gray-900
+                           transition-colors duration-300 group-hover:text-white">
+                  {{ project.title }}
+                </h3>
+                
+                <p class="text-sm mb-6 flex-grow min-h-[90px] text-gray-600
+                           transition-colors duration-300 group-hover:text-gray-300">
+                  {{ project.description }}
+                </p>
+                
+                <div class="flex flex-wrap gap-2 mb-6">
+                  <span v-for="tech in project.technologies" :key="tech"
+                        class="text-xs font-semibold px-3 py-1 rounded-full 
+                               bg-gray-100 text-gray-800
+                               transition-colors duration-300
+                               group-hover:bg-cyan-400/10 group-hover:text-cyan-300">
+                    {{ tech }}
+                  </span>
+                </div>
+                
+                <div class="inline-flex items-center text-gray-800 font-bold self-start mt-auto
+                            transition-colors duration-300 group-hover:text-cyan-300">
+                  <span>Ver Repositorio</span>
+                  <Icon icon="mdi:arrow-right" class="w-5 h-5 ml-1 transition-transform duration-300 group-hover:translate-x-1"/>
+                </div>
+              </div>
+            </div>
+          </div>
+        </a>
       </div>
+
     </div>
   </section>
 </template>
-
-
-
-<script setup>
-import { ref } from 'vue';
-import project1Image from '@/assets/proyecto-1.png';
-import project2Image from '@/assets/proyecto-2.png';
-// Si tienes una tercera imagen, impórtala también:
-// import project3Image from '@/assets/proyecto-3.png';
-
-const projects = ref([
-  {
-    title: 'Análisis de Vulnerabilidades App Web',
-    description: '...',
-    technologies: ['Burp Suite', 'OWASP ZAP', 'Nmap', 'SQLMap'],
-    image: project1Image,
-    link: '...'
-  },
-  {
-    title: 'Keylogger en Python',
-    description: '...',
-    technologies: ['Python', 'Sockets', 'pynput'],
-    image: project2Image,
-    link: '...'
-  },
-  // --- ¡AÑADE UN TERCER PROYECTO AQUÍ! ---
-  {
-    title: 'Mi Tercer Proyecto Increíble',
-    description: 'Esta es la descripción de mi tercer proyecto, donde demuestro mis habilidades en seguridad ofensiva y defensiva.',
-    technologies: ['Otra', 'Tecnología', 'Genial'],
-    image: project1Image, // Puedes usar una imagen temporal mientras consigues la correcta
-    link: '...'
-  },
-  // Y puedes seguir añadiendo más...
-]);
-</script>
