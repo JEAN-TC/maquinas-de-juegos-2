@@ -38,22 +38,27 @@ const projects = ref([
   <section id="projects" class="py-24 bg-background">
     <div class="container mx-auto px-6">
       
-      <!-- === INICIO DEL TÍTULO AÑADIDO === -->
-      <div class="text-center mb-20" data-aos="fade-up">
-        <h2 
-          class="relative inline-block text-3xl md:text-4xl font-extrabold text-dark-text-primary py-2
-                 tracking-wider uppercase"
-        >
-          <span>Proyectos Destacados</span>
-          <span 
-            class="absolute bottom-0 left-0 w-full h-1 bg-accent
-                   transform origin-left transition-transform duration-700 ease-out"
-            data-aos="scale-x-100" 
-            data-aos-anchor-placement="top-bottom"
-          ></span>
-        </h2>
-      </div>
-      <!-- === FIN DEL TÍTULO AÑADIDO === -->
+<!-- === TÍTULO FINAL ESTILO "HUD INTERACTIVO" === -->
+<div 
+  class="relative group text-center mb-20 w-full max-w-lg mx-auto py-4"
+  data-aos="fade-up"
+>
+  <!-- Las 4 esquinas decorativas. Invisibles por defecto. -->
+  <div class="absolute top-0 left-0 w-0 h-0 border-l-2 border-t-2 border-accent 
+              transition-all duration-300 group-hover:w-8 group-hover:h-8"></div>
+  <div class="absolute top-0 right-0 w-0 h-0 border-r-2 border-t-2 border-accent 
+              transition-all duration-300 group-hover:w-8 group-hover:h-8"></div>
+  <div class="absolute bottom-0 left-0 w-0 h-0 border-l-2 border-b-2 border-accent 
+              transition-all duration-300 group-hover:w-8 group-hover:h-8"></div>
+  <div class="absolute bottom-0 right-0 w-0 h-0 border-r-2 border-b-2 border-accent 
+              transition-all duration-300 group-hover:w-8 group-hover:h-8"></div>
+
+  <!-- Título -->
+  <h2 class="text-3xl md:text-4xl font-extrabold text-text-primary tracking-widest uppercase
+             transition-all duration-300 group-hover:text-accent group-hover:scale-105">
+    Proyectos Destacados
+  </h2>
+</div>
 
       
       <!-- GRID DE PROYECTOS (Tu código original sin cambios) -->
