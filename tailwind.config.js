@@ -70,9 +70,27 @@ module.exports = {
           },
         },
       },
-
-      // --- CLASES DE UTILIDAD PARA LAS ANIMACIONES ---
+// tailwind.config.js
+// ...
+      keyframes: {
+        'soft-glow': { /* ... */ },
+        'aurora-border': { /* ... */ },
+        // --- ✨ NUEVAS ANIMACIONES "GLITCH" ✨ ---
+        'glitch-top': {
+          '2%, 64%': { transform: 'translate(2px, -2px)' },
+          '4%, 60%': { transform: 'translate(-2px, 2px)' },
+        },
+        'glitch-bottom': {
+          '2%, 64%': { transform: 'translate(-2px, 2px)' },
+          '4%, 60%': { transform: 'translate(2px, -2px)' },
+        }
+      },
       animation: {
+        'soft-glow': 'soft-glow 2.5s ease-in-out infinite',
+        'aurora-border': 'aurora-border 8s ease-in-out infinite',
+        // --- ✨ NUEVAS CLASES DE ANIMACIÓN "GLITCH" ✨ ---
+        'glitch-top': 'glitch-top 1s linear infinite',
+        'glitch-bottom': 'glitch-bottom 1s linear infinite',
         'aurora-border': 'aurora 8s ease-in-out infinite',
         'soft-glow': 'soft-glow 2.5s ease-in-out infinite',
         'sparkle-bg': 'sparkle-bg 15s linear infinite',

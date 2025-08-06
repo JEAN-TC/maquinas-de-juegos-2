@@ -1,14 +1,3 @@
-Claro, aquí tienes el código del `Footer.vue` con los colores ajustados para que combine con la barra de navegación oscura que se ve en la imagen.
-
-Se han realizado los siguientes cambios:
-
-  * El color de fondo del footer se ha cambiado a **negro oscuro** (`#000000`).
-  * El color de los bordes se ha ajustado para que coincida con el borde sutil de la barra de navegación.
-  * Los colores de los enlaces y los textos se han unificado para mantener la coherencia con el estilo de la barra superior.
-
-### Código del Footer con Colores Unificados
-
-```vue
 <script setup>
 import { Icon } from '@iconify/vue';
 </script>
