@@ -123,4 +123,3 @@ import { Icon } from '@iconify/vue';
   animation: soft-glow 3s ease-in-out infinite alternate;
 }
 </style>
-```

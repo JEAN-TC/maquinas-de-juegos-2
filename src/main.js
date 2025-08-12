@@ -19,3 +19,4 @@ AOS.init({
 
 // IMPORTANTE: SOLO HAY UNA LÍNEA PARA CREAR LA APP
 createApp(App).mount('#app') 
+
