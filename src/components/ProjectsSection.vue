@@ -3,7 +3,7 @@ import { ref } from 'vue';
 import { Icon } from '@iconify/vue';
 import project1Image from '@/assets/proyecto-1.png';
 import project2Image from '@/assets/proyecto-2.png';
-import fondowebVideo from '@/assets/Fondo-web/dale1.mp4'; 
+import fondowebVideo from '@/assets/Fondo-web/dale1.mp4';
 
 const projects = ref([
   {
@@ -31,155 +31,207 @@ const projects = ref([
 </script>
 
 <template>
-  <section
-    id="projects"
-    class="py-24 relative z-10"
-  >
-    <video
-      autoplay
-      muted
-      loop
-      playsinline
-      class="absolute inset-0 w-full h-full object-cover z-0"
-    >
-      <source :src="fondowebVideo" type="video/mp4" />
-      Tu navegador no soporta el video de fondo.
-    </video>
+  <section id="projects" class="py-24 relative overflow-hidden">
+    
+    <!-- Fondo con video -->
+    <div class="absolute inset-0 z-0">
+      <video autoplay muted loop playsinline :src="fondowebVideo" class="w-full h-full object-cover"></video>
+      <div class="absolute inset-0 bg-black/70"></div> 
+    </div>
 
-    <div
-      class="absolute inset-0 bg-black/50 z-10"
-    ></div>
-
-    <div class="container mx-auto px-6 relative z-20">
-      <div 
-        class="relative group text-center mb-20 w-full max-w-lg mx-auto py-4"
-        data-aos="fade-up"
-      >
-        <div class="absolute top-0 left-0 w-0 h-0 border-l-2 border-t-2 border-accent 
-                     transition-all duration-300 group-hover:w-8 group-hover:h-8"></div>
-        <div class="absolute top-0 right-0 w-0 h-0 border-r-2 border-t-2 border-accent 
-                     transition-all duration-300 group-hover:w-8 group-hover:h-8"></div>
-        <div class="absolute bottom-0 left-0 w-0 h-0 border-l-2 border-b-2 border-accent 
-                     transition-all duration-300 group-hover:w-8 group-hover:h-8"></div>
-        <div class="absolute bottom-0 right-0 w-0 h-0 border-r-2 border-b-2 border-accent 
-                     transition-all duration-300 group-hover:w-8 group-hover:h-8"></div>
+    <div class="container mx-auto px-6 relative z-10">
       
-        <h2 class="text-3xl md:text-4xl font-extrabold text-white tracking-widest uppercase
-                     transition-all duration-300 group-hover:text-accent group-hover:scale-105">
-          Proyectos Destacados
-        </h2>
+      <!-- Título con chispas -->
+      <div class="text-center mb-16 relative flex items-center justify-center gap-10" data-aos="fade-up">
+        <div class="spark-container spark-left">
+          <span v-for="n in 8" :key="'left'+n" class="spark"></span>
+        </div>
+
+        <h2 class="title-fire">𝗠𝗜𝗦 𝗣𝗥𝗢𝗬𝗘𝗖𝗧𝗢𝗦</h2>
+
+        <div class="spark-container spark-right">
+          <span v-for="n in 8" :key="'right'+n" class="spark"></span>
+        </div>
       </div>
       
+      <!-- Grid de proyectos -->
       <div class="max-w-7xl mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <a 
+        <div 
           v-for="(project, index) in projects" 
           :key="project.title"
-          :href="project.link" 
-          target="_blank"
           data-aos="fade-up"
           :data-aos-delay="index * 150"
-          class="group block bg-white rounded-xl overflow-hidden border border-gray-200
-                   shadow-lg transition-all duration-500 ease-in-out
-                   hover:shadow-2xl hover:shadow-cyan-500/20 hover:-translate-y-2 hover:border-transparent"
+          class="group relative rounded-xl overflow-hidden transition-all duration-500 ease-in-out"
         >
-          <div class="relative flex flex-col h-full">
+          <div class="absolute -inset-0.5 z-0 transition-all duration-500
+                      bg-gradient-to-br from-orange-400 to-red-500
+                      opacity-0 group-hover:opacity-75 blur-xl"></div>
+          <div class="absolute inset-0 z-0 transition-all duration-500
+                      bg-gradient-to-br from-orange-500 via-red-600 to-black
+                      opacity-0 group-hover:opacity-100"></div>
+
+          <a
+            :href="project.link"
+            target="_blank"
+            class="relative z-10 block flex flex-col h-full 
+                   bg-gray-900/80 backdrop-blur-sm
+                   border border-gray-700 rounded-xl
+                   transition-all duration-500
+                   group-hover:bg-transparent group-hover:border-orange-400/50"
+          >
             <div class="overflow-hidden">
-              <img :src="project.image" alt="Imagen del proyecto" 
-                     class="w-full h-56 object-cover
-                           transition-transform duration-500 ease-in-out
-                           group-hover:scale-105">
+              <img 
+                :src="project.image" alt="Imagen del proyecto"
+                class="w-full h-56 object-cover
+                       transition-transform duration-500 ease-in-out
+                       group-hover:scale-105"
+              >
             </div>
-            <div class="relative p-6 flex flex-col flex-grow">
-              <div 
-                class="absolute inset-0 z-0 transition-opacity duration-500 opacity-0 group-hover:opacity-100 
-                       cyber-glitch-overlay pointer-events-none"
-              ></div>
-              <div class="relative z-10 flex flex-col flex-grow">
-                <h3 class="text-xl font-bold mb-3 text-gray-900
-                             transition-colors duration-300 group-hover:text-white">
-                  {{ project.title }}
-                </h3>
-                <p class="text-sm mb-6 flex-grow min-h-[90px] text-gray-600
-                             transition-colors duration-300 group-hover:text-gray-300">
-                  {{ project.description }}
-                </p>
-                <div class="flex flex-wrap gap-2 mb-6">
-                  <span v-for="tech in project.technologies" :key="tech"
-                         class="text-xs font-semibold px-3 py-1 rounded-full 
-                                bg-gray-100 text-gray-800
-                                transition-colors duration-300
-                                group-hover:bg-cyan-400/10 group-hover:text-cyan-300">
-                    {{ tech }}
-                  </span>
-                </div>
-                <div class="inline-flex items-center text-gray-800 font-bold self-start mt-auto
-                             transition-colors duration-300 group-hover:text-cyan-300">
-                  <span>Ver Repositorio</span>
-                  <Icon icon="mdi:arrow-right" class="w-5 h-5 ml-1 transition-transform duration-300 group-hover:translate-x-1"/>
-                </div>
+            
+            <div class="p-6 flex flex-col flex-grow">
+              <h3 class="text-xl font-bold mb-3 text-gray-200 
+                         transition-colors duration-300 group-hover:text-white">
+                {{ project.title }}
+              </h3>
+              <p class="text-sm mb-6 flex-grow text-gray-400 transition-colors duration-300 group-hover:text-gray-200">
+                {{ project.description }}
+              </p>
+              <div class="flex flex-wrap gap-2 mb-6">
+                <span v-for="tech in project.technologies" :key="tech"
+                      class="text-xs font-semibold px-3 py-1 rounded-full
+                             bg-gray-800 text-gray-300
+                             transition-all duration-300
+                             group-hover:bg-orange-500/20 group-hover:text-orange-300">
+                  {{ tech }}
+                </span>
+              </div>
+              <div class="inline-flex items-center text-gray-300 font-bold self-start mt-auto
+                         transition-colors duration-300 group-hover:text-orange-400">
+                <span>Ver Repositorio</span>
+                <Icon icon="mdi:arrow-right" class="w-5 h-5 ml-1 transition-transform duration-300 group-hover:translate-x-1"/>
               </div>
             </div>
-          </div>
-        </a>
+          </a>
+        </div>
       </div>
+    </div>
+
+    <!-- Chispas dispersas por todo el fondo -->
+    <div class="global-sparks">
+      <span v-for="n in 20" :key="'global'+n" class="spark spark-global"></span>
     </div>
   </section>
 </template>
 
 <style scoped>
-/* ================================================= */
-/* === Estilos de iluminación y decoración === */
-/* ================================================= */
+/* Estilo del título con negro + naranja saturado */
+.title-fire {
+  font-size: 3.2rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  background: linear-gradient(to bottom, #000000 35%, #ff6a00 70%, #ff4500 90%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: titleGlow 3s infinite ease-in-out, heatWave 2s infinite ease-in-out;
+  letter-spacing: 4px;
+  filter: contrast(1.8) saturate(2.8);
+  text-shadow: 0 0 18px rgba(255, 120, 0, 0.85);
+}
 
-/* Estos estilos se mantienen para los efectos de las tarjetas */
-.group:hover .relative.flex.flex-col.h-full {
-    box-shadow: 0 0 15px rgba(0, 200, 255, 0.7),
-                0 0 25px rgba(0, 200, 255, 0.5),
-                0 0 40px rgba(0, 200, 255, 0.3);
-    border-color: rgba(0, 200, 255, 0.5);
-    transition: all 0.4s ease-in-out;
+@keyframes titleGlow {
+  0%, 100% {
+    text-shadow: 0 0 14px rgba(255, 120, 0, 0.7), 0 0 28px rgba(255, 69, 0, 0.6);
+  }
+  50% {
+    text-shadow: 0 0 30px rgba(255, 160, 0, 1), 0 0 55px rgba(255, 69, 0, 0.95);
+  }
 }
-.group:hover .text-gray-900 { color: #fff; }
-.group:hover .text-gray-600 { color: #e0e0e0; }
-.group:hover .bg-gray-100 { background-color: rgba(0, 200, 255, 0.2); color: #00e0ff; }
-.group:hover .text-gray-800 { color: #00e0ff; }
-.group:hover h2 {
-    text-shadow: 0 0 10px #fff,
-                 0 0 20px rgba(0, 200, 255, 0.8),
-                 0 0 30px rgba(0, 200, 255, 0.6);
-    transition: text-shadow 0.4s ease-in-out;
+
+@keyframes heatWave {
+  0%   { transform: skewX(0deg) translateY(0px); }
+  25%  { transform: skewX(1deg) translateY(-1px); }
+  50%  { transform: skewX(-1deg) translateY(1px); }
+  75%  { transform: skewX(0.5deg) translateY(-1px); }
+  100% { transform: skewX(0deg) translateY(0px); }
 }
-.cyber-glitch-overlay {
-    background-color: rgba(10, 25, 47, 0.7);
-    box-shadow:
-      inset 0 0 50px rgba(14, 165, 233, 0.4),
-      inset 0 0 15px rgba(4, 31, 44, 0.308);
-    overflow: hidden;
-    position: absolute;
+
+/* Chispas laterales */
+.spark-container {
+  position: relative;
+  width: 50px;
+  height: 90px;
 }
-.cyber-glitch-overlay::after {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    right: -50%;
-    bottom: -50%;
-    width: 200%;
-    height: 200%;
-    background: transparent url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIj48ZmlsdGVyIGlkPSJub2lzZSI+PGZlVHVyYmVsZW5jZSB0eXBlPSJmcmFjdGFsTm9pc2UiIGJhc2VGUmVxdWVuY3k9IjAuNjUiIG51bU9jdGF2ZXM9IjMiIHN0aXRjaFRpbGVzPSJzdGl0Y2giLz48ZmVDb2xvck1hdHJpeCB0eXBlPSJtYXRyaXgiIHZhbHVlcz0iMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMC41IDAiLz48L2ZpbHRlcj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWx0ZXI9InVybCgjam9pc2UpIi8+PC9zdmc+');
-    animation: noise 2s steps(10) infinite;
-    opacity: 0.1;
+
+.spark {
+  position: absolute;
+  bottom: 0;
+  width: 4px;
+  height: 4px;
+  background: radial-gradient(circle, #ffb400 40%, #ff4500 70%, transparent 100%);
+  border-radius: 50%;
+  animation: sparkFly 1.4s infinite ease-out;
+  opacity: 0.9;
 }
-@keyframes noise {
-    0%, 100% { transform: translate(0, 0); }
-    10% { transform: translate(-5%, -10%); }
-    20% { transform: translate(-15%, 5%); }
-    30% { transform: translate(7%, -25%); }
-    40% { transform: translate(-5%, 25%); }
-    50% { transform: translate(-15%, 10%); }
-    60% { transform: translate(15%, 0%); }
-    70% { transform: translate(0%, 15%); }
-    80% { transform: translate(25%, 35%); }
-    90% { transform: translate(-10%, 10%); }
+
+@keyframes sparkFly {
+  0% { transform: translate(0, 0) scale(1); opacity: 1; }
+  60% { opacity: 1; }
+  100% { transform: translate(var(--x-move), -100px) scale(0.3); opacity: 0; }
 }
+
+.spark:nth-child(1) { --x-move: -10px; animation-delay: 0s; left: 5%; }
+.spark:nth-child(2) { --x-move: -15px; animation-delay: 0.2s; left: 25%; }
+.spark:nth-child(3) { --x-move: 5px; animation-delay: 0.4s; left: 50%; }
+.spark:nth-child(4) { --x-move: 12px; animation-delay: 0.1s; left: 75%; }
+.spark:nth-child(5) { --x-move: -8px; animation-delay: 0.5s; left: 15%; }
+.spark:nth-child(6) { --x-move: 18px; animation-delay: 0.3s; left: 65%; }
+.spark:nth-child(7) { --x-move: -20px; animation-delay: 0.6s; left: 35%; }
+.spark:nth-child(8) { --x-move: 15px; animation-delay: 0.7s; left: 85%; }
+
+/* Chispas globales ahora bajan */
+.global-sparks {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.spark-global {
+  width: 4px;
+  height: 4px;
+  position: absolute;
+  background: radial-gradient(circle, #ffdd66 40%, #ff5500 70%, transparent 100%);
+  border-radius: 50%;
+  animation: globalSparkFall 3s infinite ease-out;
+  opacity: 0.8;
+}
+
+@keyframes globalSparkFall {
+  0%   { transform: translateY(-300px) scale(0.4); opacity: 0; }
+  50%  { opacity: 1; }
+  100% { transform: translateY(0) scale(1); opacity: 0; }
+}
+
+.spark-global:nth-child(odd) { animation-duration: 2.5s; }
+.spark-global:nth-child(even) { animation-duration: 3.5s; }
+.spark-global:nth-child(1)  { left: 10%; animation-delay: 0s; }
+.spark-global:nth-child(2)  { left: 25%; animation-delay: 0.5s; }
+.spark-global:nth-child(3)  { left: 40%; animation-delay: 1s; }
+.spark-global:nth-child(4)  { left: 60%; animation-delay: 0.2s; }
+.spark-global:nth-child(5)  { left: 80%; animation-delay: 1.5s; }
+.spark-global:nth-child(6)  { left: 5%; animation-delay: 2s; }
+.spark-global:nth-child(7)  { left: 15%; animation-delay: 0.7s; }
+.spark-global:nth-child(8)  { left: 35%; animation-delay: 1.2s; }
+.spark-global:nth-child(9)  { left: 50%; animation-delay: 2.3s; }
+.spark-global:nth-child(10) { left: 70%; animation-delay: 0.9s; }
+.spark-global:nth-child(11) { left: 90%; animation-delay: 1.7s; }
+.spark-global:nth-child(12) { left: 20%; animation-delay: 2.5s; }
+.spark-global:nth-child(13) { left: 45%; animation-delay: 1.9s; }
+.spark-global:nth-child(14) { left: 65%; animation-delay: 2.7s; }
+.spark-global:nth-child(15) { left: 85%; animation-delay: 0.4s; }
+.spark-global:nth-child(16) { left: 30%; animation-delay: 1.4s; }
+.spark-global:nth-child(17) { left: 55%; animation-delay: 0.6s; }
+.spark-global:nth-child(18) { left: 75%; animation-delay: 2.1s; }
+.spark-global:nth-child(19) { left: 95%; animation-delay: 1.1s; }
+.spark-global:nth-child(20) { left: 12%; animation-delay: 2.9s; }
 </style>
